@@ -15,3 +15,9 @@ I'm giving the idea of using a different language each day a shot.
    was a lucky choice once I learned enough to get started because it made the
    filtering and reduction steps really elegant.  I could remove some of the
    explicit iteration and mutation from this knowing what I know now.
+3. I chose *C* because it seemed to fit the nature and simplicity of the
+   problem.  I wanted a linear solution here, and I thought if I mmap'd the
+   file I could just treat it like a 2D array and create a spatial mask around
+   symbols.  I knew there was a risk that part 2 would throw me a curveball
+   that would make this solution brittle, but it wasn't too bad in the end.
+   But I'm glad I don't have to maintain this code!
