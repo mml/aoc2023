@@ -21,3 +21,7 @@ I'm giving the idea of using a different language each day a shot.
    symbols.  I knew there was a risk that part 2 would throw me a curveball
    that would make this solution brittle, but it wasn't too bad in the end.
    But I'm glad I don't have to maintain this code!
+4. `Awk` worked out pretty well.  This is almost exactly how I would have done
+   it in Perl, just without tweaking FS.  Instead I'd have used regex capture
+   groups from the start.  Hard to believe, but I think this would have been
+   more readable in Perl.

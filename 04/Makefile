@@ -1,7 +1,7 @@
 PROG1 = puz1.awk
-PROG2 = puz2
+PROG2 = puz2.awk
 
-default: run1
+default: run2
 
 test1: $(PROG1)
 	./$(PROG1) test1.txt
