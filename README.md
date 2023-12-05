@@ -25,3 +25,13 @@ I'm giving the idea of using a different language each day a shot.
    it in Perl, just without tweaking FS.  Instead I'd have used regex capture
    groups from the start.  Hard to believe, but I think this would have been
    more readable in Perl.
+5. I have a lot of experience with [Go](https://go.dev/).  The type system was
+   a good fit for the problem today.  And the OO features helped, too.  As is
+   typical for Go programs, error checking can be cumbersome and verbose.  The
+   same could be said for the parsing part of the program.  I like that Go is
+   very relaxed about where you can write a method (anywhere) and how trivial
+   it is to change a "normal" function into a method.  It makes it easy to
+   quickly create and modify solutions for these small problems.  Also, I
+   wanted to do this without relying on 64-bit integers or bignums, and the Go
+   compiler's pretty strict about type mixing here, which forced me to be
+   explicit about type conversions.  (My solution could still overflow.)
