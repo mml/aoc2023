@@ -35,3 +35,8 @@ I'm giving the idea of using a different language each day a shot.
    wanted to do this without relying on 64-bit integers or bignums, and the Go
    compiler's pretty strict about type mixing here, which forced me to be
    explicit about type conversions.  (My solution could still overflow.)
+6. [JavaScript](https://developer.mozilla.org/en-US/docs/Web/javascript) worked
+   just fine for this very simple problem.  This one was easy as long as your
+   integer type didn't overflow.  The "integer" (Number) type in JS is actually
+   float64, which can represent integer values accurately up to 2^53-1.  This
+   problem would have overflowed uint32 but fit fine here.
