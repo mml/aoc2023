@@ -40,3 +40,7 @@ I'm giving the idea of using a different language each day a shot.
    integer type didn't overflow.  The "integer" (Number) type in JS is actually
    float64, which can represent integer values accurately up to 2^53-1.  This
    problem would have overflowed uint32 but fit fine here.
+7. [Ruby](https://www.ruby-lang.org/) is really great for problems like this.
+   I sketched the solution on paper the night before, in Scheme, and it shows
+   in the way I "take the cdr" of arrays over and over again.  Very
+   inefficient, lots of copying, but it seems to work fine.
