@@ -20,23 +20,12 @@ def rank_to_hex(c)
 end
 
 def hand_to_digits(h)
-  h.chars.map{ |c|
-    rank_to_hex(c)
-  }
+  h.chars.map{ |c| rank_to_hex(c) }
 end
 
 def sub_matches(c, h)
-  n = 0
-  remain = []
-  until h.empty?
-    if h[0] == c
-      n+=1
-    else
-      remain.unshift(h[0])
-    end
-    h=h[1,HAND_LENGTH]
-  end
-  return n, remain
+  cs, remain = h.partition{ |hc| hc == c }
+  return cs.count, remain
 end
 
 def permute_jokers(h)
@@ -95,23 +84,19 @@ def max_score(h)
   digss.map{ |x| score(x, digs) }.max
 end
 
-begin
-  n = 0
-  l = ARGF.readlines.
-    map(&:chomp).
-    map(&:split).
-    map { |h,b|
-      [
-        max_score(h),
-        b.to_i
-      ]
-    }.
-    sort_by(&:first).
-    each_with_index.map { |(h,b),i|
-      b*(i+1)
-    }.
-    sum
-  print l
-rescue EOFError => e
-  # That's fine
-end
+n = 0
+l = ARGF.readlines.
+  map(&:chomp).
+  map(&:split).
+  map { |h,b|
+    [
+      max_score(h),
+      b.to_i
+    ]
+  }.
+  sort_by(&:first).
+  each_with_index.map { |(h,b),i|
+    b*(i+1)
+  }.
+  sum
+print l
