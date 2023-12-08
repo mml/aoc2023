@@ -44,3 +44,10 @@ I'm giving the idea of using a different language each day a shot.
    I sketched the solution on paper the night before, in Scheme, and it shows
    in the way I "take the cdr" of arrays over and over again.  Very
    inefficient, lots of copying, but it seems to work fine.
+8. Using [zsh](https://www.zsh.org/) is really more of a novelty act.
+   Something you do on a dare.  I didn't use any external programs, so this
+   isn't just a "pipeline" solution, but it uses zsh as a language in its own
+   right.  This problem was a good fit because it didn't need fancy types or
+   very many functions.  It's the sort of thing that works just fine with a few
+   global variables and would also be easy in BASIC.  Even the Euclidean
+   algorithm stuff.
