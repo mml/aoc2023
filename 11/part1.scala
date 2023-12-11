@@ -1,25 +1,19 @@
-//> using toolkit latest
-
 import scala.io.StdIn.readLine
-import scala.util.matching.Regex
 
-def doubleEmpty(rows: Seq[String]): Seq[String] = {
-  val empty: Regex = "^(\\.*)$".r
+type Loc = (Int,Int)
+val empty = "^(\\.*)$".r
+
+// Return a sequence of two rows (or columns) for each empty row...
+// otherwise, a sequence of only one.
+def doubleEmpty(rows: Seq[String]): Seq[String] =
   rows flatMap { row =>
     row match
     case empty(e) => Seq(e,e)
     case _ => Seq(row)
   }
-}
 
 object Image:
-  var img: Seq[String] = null
-
-  def ymax =
-    img.length-1
-
-  def xmax =
-    img.map({_.length}).max
+  var img = Seq.empty[String]
 
   def transposed =
     img.transpose map { _.mkString }
@@ -27,35 +21,33 @@ object Image:
   def setTransposed(img_transposed: Seq[String] ) =
     img = img_transposed.transpose map { _.mkString }
 
-  def expand: Unit = {
+  def expand =
     img = doubleEmpty(img)
     setTransposed(doubleEmpty(transposed))
-  }
 
   override def toString(): String =
-    var sb = StringBuilder()
+    val sb = StringBuilder()
     img.foreach {
       sb ++= _.toString + "\n"
     }
     sb.toString
 
-  def galaxies: List[(Int,Int)] =
+  def galaxies: List[Loc] =
     ((img map { _.zipWithIndex }).zipWithIndex.map{
       case (row,y) => row.map {
         case (ch,x) => if ch == '#' then Some((x,y)) else None
       }
     }).flatten.flatten.toList
 
-def d(a: (Int,Int), b: (Int,Int)): Int =
+def d(a: Loc, b: Loc): Int =
   (a._1 - b._1).abs + (a._2 - b._2).abs
 
-def pairs(coords: List[(Int,Int)]): List[((Int,Int),(Int,Int))] = coords match {
-  case Nil => List.empty[((Int,Int),(Int,Int))]
+def pairs(coords: List[Loc]): List[(Loc,Loc)] = coords match
+  case Nil => List.empty[(Loc,Loc)]
   case hd :: tl => {
-    var withHd: List[((Int,Int),(Int,Int))] = tl map { (x:(Int,Int)) => (hd,x) }
+    var withHd: List[(Loc,Loc)] = tl map { (x:Loc) => (hd,x) }
     withHd ++ pairs(tl)
   }
-}
 
 @main def main() =
   val buf = scala.collection.mutable.ListBuffer.empty[String]

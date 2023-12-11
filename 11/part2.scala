@@ -1,105 +1,95 @@
-//> using toolkit latest
-
 import scala.io.StdIn.readLine
-import scala.util.matching.Regex
 
-def doubleEmpty(rows: Seq[String]): Seq[String] = {
-  val empty: Regex = "^(\\.*)$".r
-  rows flatMap { row =>
-    row match
-    case empty(e) => Seq(e,e)
-    case _ => Seq(row)
-  }
-}
+type Loc = (Int,Int)
+val emptyPat = "^(\\.*)$".r
 
-def empty(row: String) = {
-  val empty: Regex = "^(\\.*)$".r
-  empty.matches(row)
-}
+def empty(row: String) =
+  emptyPat.matches(row)
 
+// This holds the input data (universe map), plus binds behavior.
+// One thing I like about Scala is that it lets me create objects
+// without the overhead of classes, which is often exactly the
+// right amount of OO for these puzzle problems.
 object Image:
-  var img: Seq[String] = null
-  var empty_rows: Seq[Int] = null
-  var empty_cols: Seq[Int] = null
+  var img = Seq.empty[String]
+  private var empty_rows = Seq.empty[Int]
+  private var empty_cols = Seq.empty[Int]
 
-  def ymax =
-    img.length-1
-
-  def xmax =
-    img.map({_.length}).max
-
+  // These two methods allow us to re-use row-oriented logic to
+  // operate on columns.  Very convenient!
   def transposed =
     img.transpose map { _.mkString }
 
   def setTransposed(img_transposed: Seq[String] ) =
     img = img_transposed.transpose map { _.mkString }
 
-  def expand: Unit = {
-    img = doubleEmpty(img)
-    setTransposed(doubleEmpty(transposed))
-  }
-
-  def find_empties: Unit = {
+  // Locate empty rows and columns, so we can quickly calculate
+  // expanded coordinates.
+  def find_empties =
     empty_rows = img.zipWithIndex filter {
       case (row,ix) => empty(row)
     } map { _._2 }
     empty_cols = transposed.zipWithIndex filter {
       case (col,iy) => empty(col)
     } map { _._2 }
-  }
 
-  def expanded_x(x: BigInt) =
-    x + BigInt(999999) * (empty_cols filter { _ < x }).length
+  def expanded_x(x: Long) =
+    x + 999999 * (empty_cols filter { _ < x }).length
 
-  def expanded_y(y: BigInt) =
-    y + BigInt(999999) * (empty_rows filter { _ < y}).length
+  def expanded_y(y: Long) =
+    y + 999999 * (empty_rows filter { _ < y}).length
 
-  override def toString(): String =
+  def expanded(loc: Loc) =
+    (expanded_x(loc._1), expanded_y(loc._2))
+
+  override def toString() =
     var sb = StringBuilder()
-    img.foreach {
-      sb ++= _.toString + "\n"
-    }
+    img.foreach { sb ++= _.toString + "\n" }
     sb.toString
 
-  def galaxies: List[(Int,Int)] =
+  def galaxies: List[Loc] =
+    // Use of zipWithIndex here could indicate that Vectors or Arrays
+    // would have been better, but it does allow us to create something
+    // like nested for loops.
     ((img map { _.zipWithIndex }).zipWithIndex.map{
       case (row,y) => row.map {
         case (ch,x) => if ch == '#' then Some((x,y)) else None
       }
+    // The first flatten flattens out sublists.
+    // The second one strips the Some/None.
     }).flatten.flatten.toList
 
-def d(a: (Int,Int), b: (Int,Int)): BigInt =
-  ((Image.expanded_x(a._1) - Image.expanded_x(b._1)).abs
-    +
-    (Image.expanded_y(a._2) - Image.expanded_y(b._2)).abs)
+// int64 (Long) is required here to represent the correct answer, which is
+// above 2^39.  A 32-bit approach would have been to just count the "extra
+// millions" separately
+def d(a: Loc, b: Loc): Long =
+  val ea = Image.expanded(a)
+  val eb = Image.expanded(b)
+  (ea._1 - eb._1).abs + (ea._2 - eb._2).abs
 
-def pairs(coords: List[(Int,Int)]): List[((Int,Int),(Int,Int))] = coords match {
-  case Nil => List.empty[((Int,Int),(Int,Int))]
+// Generates a list of all pairs of galaxies.
+def pairs(coords: List[Loc]): List[(Loc,Loc)] = coords match
+  case Nil => List.empty[(Loc,Loc)]
   case hd :: tl => {
-    var withHd: List[((Int,Int),(Int,Int))] = tl map { (x:(Int,Int)) => (hd,x) }
+    var withHd: List[(Loc,Loc)] = tl map { (x:Loc) => (hd,x) }
     withHd ++ pairs(tl)
   }
-}
 
 @main def main() =
   val buf = scala.collection.mutable.ListBuffer.empty[String]
-  var line: String = null
+  var line: String = ""
   while {
     line = readLine()
     line != null
-  } do {
+  } do
     buf += line
-  }
-  Image.img = buf.toList
 
+  Image.img = buf.toList
   println(Image)
-  println("----------------------------------------")
-  //Image.expand
   Image.find_empties
-  println(Image)
   val g = Image.galaxies
   val p = pairs(g)
-  println(p)
+  //println(p)
   val ds = p map { case (a,b) => d(a,b) }
-  println(ds)
+  //println(ds)
   println(ds.sum)
