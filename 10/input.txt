@@ -1,0 +1,1 @@
+../aoc-input/2023/10-input.txt
