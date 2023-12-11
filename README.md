@@ -61,3 +61,12 @@ I'm giving the idea of using a different language each day a shot.
     runtime.  A lengthy debug cycle and `local` variable declarations peppered
     everywhere.  The Lua implementation is an impressive feat, but I wouldn't
     use Lua again unless it was required.
+11. [Scala](https://www.scala-lang.org/) strikes me as a pretty decent choice
+    if you must work in a JVM environment.  It seems a lot more to the point
+    than Kotlin, but it's still very confusing if you're used to working with
+    pairs, simple recursive functions, and destructuring assignment in Scheme
+    or Haskell.  I found I had a hard time understand when exactly I could use
+    `foo map { bar }`, `foo map { _.bar }`, `foo.map({ ??? })` and a variety of
+    other similar syntaxes.  The switch from Scala 2 to Scala 3 was also
+    confusing.  It made a lot of older results I found on stackoverflow fairly
+    useless.

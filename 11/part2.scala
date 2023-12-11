@@ -12,8 +12,15 @@ def doubleEmpty(rows: Seq[String]): Seq[String] = {
   }
 }
 
+def empty(row: String) = {
+  val empty: Regex = "^(\\.*)$".r
+  empty.matches(row)
+}
+
 object Image:
   var img: Seq[String] = null
+  var empty_rows: Seq[Int] = null
+  var empty_cols: Seq[Int] = null
 
   def ymax =
     img.length-1
@@ -32,6 +39,21 @@ object Image:
     setTransposed(doubleEmpty(transposed))
   }
 
+  def find_empties: Unit = {
+    empty_rows = img.zipWithIndex filter {
+      case (row,ix) => empty(row)
+    } map { _._2 }
+    empty_cols = transposed.zipWithIndex filter {
+      case (col,iy) => empty(col)
+    } map { _._2 }
+  }
+
+  def expanded_x(x: BigInt) =
+    x + BigInt(999999) * (empty_cols filter { _ < x }).length
+
+  def expanded_y(y: BigInt) =
+    y + BigInt(999999) * (empty_rows filter { _ < y}).length
+
   override def toString(): String =
     var sb = StringBuilder()
     img.foreach {
@@ -46,8 +68,10 @@ object Image:
       }
     }).flatten.flatten.toList
 
-def d(a: (Int,Int), b: (Int,Int)): Int =
-  (a._1 - b._1).abs + (a._2 - b._2).abs
+def d(a: (Int,Int), b: (Int,Int)): BigInt =
+  ((Image.expanded_x(a._1) - Image.expanded_x(b._1)).abs
+    +
+    (Image.expanded_y(a._2) - Image.expanded_y(b._2)).abs)
 
 def pairs(coords: List[(Int,Int)]): List[((Int,Int),(Int,Int))] = coords match {
   case Nil => List.empty[((Int,Int),(Int,Int))]
@@ -70,7 +94,8 @@ def pairs(coords: List[(Int,Int)]): List[((Int,Int),(Int,Int))] = coords match {
 
   println(Image)
   println("----------------------------------------")
-  Image.expand
+  //Image.expand
+  Image.find_empties
   println(Image)
   val g = Image.galaxies
   val p = pairs(g)
