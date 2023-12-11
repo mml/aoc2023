@@ -56,3 +56,8 @@ I'm giving the idea of using a different language each day a shot.
    that experience is years old), it's pretty easy to get rolling.  I didn't
    need any of its nice lambda syntax or lazy/streaming pipeline stuff for this
    one.  It's just your basic recursive stream differentation!
+10. [Lua](https://www.lua.org/) is a powerful system for its light weight, but
+    I found myself making many mistakes that were discovered cryptically at
+    runtime.  A lengthy debug cycle and `local` variable declarations peppered
+    everywhere.  The Lua implementation is an impressive feat, but I wouldn't
+    use Lua again unless it was required.

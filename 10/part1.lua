@@ -189,3 +189,4 @@ for _,w in ipairs(walkers) do
 end
 
 print(Distance:max())
+print(Distance:__tostring())

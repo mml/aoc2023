@@ -89,6 +89,17 @@ function Flood:fill (x, y)
   end
 end
 function Flood:inside (x,y)
+  local xmod1 = math.fmod(x,1)
+  local ymod1 = math.fmod(y,1)
+
+  -- w and e cases
+  if xmod1 == 0.5 and ymod1 == 0 then
+    -- a point is not_outside if it's either off the grid or inside
+    if Flood:not_outside(x-0.5, y) and Flood:not_outside(x+0.5,y) then
+      return true
+    end
+  end
+
   if not in_bounds(x,y) then
     return false
   end
@@ -101,8 +112,55 @@ function Flood:inside (x,y)
   return true
 end
 function Flood:set (x,y)
-  self[y][x] = "O"
+  self[y][x] = " "
 end
+function Flood:count_unset ()
+  local n = 0
+  for y = 1,ymax do
+    for x = 1,xmax do
+      if not Distance:get(x,y) and not self[y][x] then
+        n = n + 1
+      end
+    end
+  end
+  return n
+end
+function Flood:count_odds ()
+  local n = 0
+  for y = 1,ymax do
+    for x = 1,xmax do
+      if not Distance:get(x,y) and not self[y][x] and not self:even_horizontal_crossings(x,y) then
+        n = n + 1
+      end
+    end
+  end
+  return n
+end
+function Flood:count_odds_dumb ()
+  local n = 0
+  for y = 1,ymax do
+    for x = 1,xmax do
+      if not Distance:get(x,y) and not self:even_horizontal_crossings(x,y) then
+        n = n + 1
+      end
+    end
+  end
+  return n
+end
+function Flood:even_horizontal_crossings (xp,yp)
+  local n = 0
+  local x
+  for x = 1,(xp-1) do
+    if Distance:get(x,yp) then
+      local ch = at(x,yp)
+      if ch == '|' or ch == '7' or ch == 'F' then
+        n = 1 - n
+      end
+    end
+  end
+  return n == 0
+end
+
 function Flood:__tostring ()
   for y = 1,ymax do
     for x = 1,xmax do
@@ -113,7 +171,7 @@ function Flood:__tostring ()
         if d then
           io.write(at(x,y))
         else
-          io.write("_")
+          io.write("[31m*[m")
         end
       end
     end
@@ -129,7 +187,7 @@ end
 function at (x, y)
   -- print("Looking up ("..x..","..y..")")
   -- print("Line is",grid[y])
-  if 0 < x and x <= xmax and 0 < y and y <= ymax then
+  if in_bounds(x,y) then
     return grid[y]:sub(x,x)
   end
   return nil
@@ -238,36 +296,6 @@ xmax = string.len(grid[ymax])
 print("S is at ("..sx..","..sy..")")
 print(at(sx,sy), " is there")
 
---[[
---For part two, we essentially want to perform a flood fill, but as the instructions say, we can "squeeze" between pipes.
---Consider two points with a sea of pipes on either side.  In one orientation, there is a barrier
---  X||Y
---  X||Y
---But in other orientations, there is flow
---  X--Y
---  X--Y
---How to model this?  What if we expand the grid?
---    ???
---  X?|?|?Y
---    ???
---  X?|?|?Y
---    ???
---
---    ? ?
---  X?-?-?Y
---    ? ? 
---  X?-?-?Y
---    ? ?
---
---In essence, this is thinking of the flood fill as proceeding by steps of 0.5.
---In a 4-neighbors algorithm, 
---
--- A--C
--- B--D
---
--- A(1,1) has a neigbor beneath it at (1,1.5)
---    ]]
-
 walkers = start_neighbors(sx,sy)
 for _,w in ipairs(walkers) do
   -- print(w)
@@ -284,6 +312,15 @@ for _,w in ipairs(walkers) do
   end
 end
 
-px, py = Distance:find_outside()
-Flood:fill(px,py)
+for y = 1,ymax do
+  Flood:fill(1,y)
+  Flood:fill(xmax,y)
+end
+for x = 1,xmax do
+  Flood:fill(x,1)
+  Flood:fill(x,ymax)
+end
 print(Flood:__tostring())
+print(Flood:count_unset())     -- This narrows the set considerably by excluding 4-neighbor flood fill from the borders of the image.
+print(Flood:count_odds())      -- For the remaining points, use ray-casting https://en.wikipedia.org/wiki/Point_in_polygon
+print(Flood:count_odds_dumb()) -- My ray-casting heuristic alone mis-counted
