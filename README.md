@@ -70,3 +70,7 @@ I'm giving the idea of using a different language each day a shot.
     other similar syntaxes.  The switch from Scala 2 to Scala 3 was also
     confusing.  It made a lot of older results I found on stackoverflow fairly
     useless.
+12. [OCaml](https://ocaml.org/) has a lovely type system.
+13. [R](https://www.r-project.org/) worked really well for another problem
+    where "transpose the data" or "treat columns like rows" was going to be
+    part of the story.
