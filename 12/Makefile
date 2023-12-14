@@ -1,13 +1,10 @@
 PROG1 = part1
 PROG2 = part2
-COMPILE = ocamlc
+COMPILE = ocamlopt.opt
 
-default: test1
+default: test2
 
-%.cmi: %.mli
-	ocamlc $<
-
-part1 part2 :: %: %.ml %.cmi
+$(PROG1) $(PROG2) :: %: %.ml
 	$(COMPILE) -g -o $@ $<
 
 test1: $(PROG1)
@@ -16,11 +13,23 @@ test1: $(PROG1)
 run1: $(PROG1)
 	./$(PROG1) < input.txt
 
+test2: $(PROG2)
+	./$(PROG2) test2.txt
+
+run2: $(PROG2)
+	./$(PROG2) input.txt
+
 top1:
-	utop $(PROG1).ml
+	utop -init $(PROG1).ml
+
+top2:
+	utop -init $(PROG2).ml
 
 clean:
 	rm -f $(PROG1) $(PROG2) *.cm? *.o a.out
 
-debug: $(PROG1)
-	ocamldebug $(PROG1)
+%.debug: %.ml
+	ocamlc -g -o $@ $<
+
+debug: $(PROG2).debug
+	ocamldebug $<

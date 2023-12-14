@@ -70,7 +70,14 @@ I'm giving the idea of using a different language each day a shot.
     other similar syntaxes.  The switch from Scala 2 to Scala 3 was also
     confusing.  It made a lot of older results I found on stackoverflow fairly
     useless.
-12. [OCaml](https://ocaml.org/) has a lovely type system.
+12. [OCaml](https://ocaml.org/) has a lovely type system, but I haven't used it
+    in so long, the syntax and semantics really stymied me for awhile.  I
+    realized how much more familiar I am with Haskell rather than old-school ML
+    languages.  But by the end, I really got it figured out.  My high-level
+    takeaway is that OCaml is a lot like Scheme with a very useful type system.
+    However, the surface syntax often feels like a foe.  I always seem to end
+    up with excessively long lines or unruly indentation, and for whatever
+    reason I see a lot of crappy function names in my OCaml code.
 13. [R](https://www.r-project.org/) worked really well for another problem
     where "transpose the data" or "treat columns like rows" was going to be
     part of the story.

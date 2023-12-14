@@ -174,7 +174,7 @@ let read_rows maybe_file =
   in rr []
 
 let main () =
-  let rows = read_rows (Some "input.txt") in
+  let rows = read_rows None in
   let rec do_rows acc = function
     | [] -> acc
     | r :: rows -> do_rows (acc+(count_ways r)) rows
