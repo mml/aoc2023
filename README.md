@@ -74,3 +74,5 @@ I'm giving the idea of using a different language each day a shot.
 13. [R](https://www.r-project.org/) worked really well for another problem
     where "transpose the data" or "treat columns like rows" was going to be
     part of the story.
+14. Rust
+15. C++
