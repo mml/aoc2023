@@ -77,3 +77,8 @@ I'm giving the idea of using a different language each day a shot.
 14. Rust
 15. C++
 16. Swift
+17. xxx
+18. xxx
+19. [Chez Scheme](https://cisco.github.io/ChezScheme/) worked well here.  I've
+    implemented a lot of compilers and interpreters in this environment.
+    Parsing was perhaps the clumsiest part.
