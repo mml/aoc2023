@@ -82,3 +82,5 @@ I'm giving the idea of using a different language each day a shot.
 19. [Chez Scheme](https://cisco.github.io/ChezScheme/) worked well here.  I've
     implemented a lot of compilers and interpreters in this environment.
     Parsing was perhaps the clumsiest part.
+20. Python
+21. Elixir
