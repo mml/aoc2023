@@ -84,3 +84,6 @@ I'm giving the idea of using a different language each day a shot.
     Parsing was perhaps the clumsiest part.
 20. Python
 21. Elixir
+22. [Mathematica](https://www.wolfram.com/mathematica/) is a lot of fun.
+    Ad-hoc pattern matching, insanely deep library, on-line help, notebook
+    interaction.
