@@ -20,16 +20,6 @@
 ;;; ⟨attr⟩      ::= x | m | a | s
 ;;; ⟨posint⟩    ::= [1-9][0-9]*
 
-(define (accept alist)
-  (set! tot (+ tot (cdr (assq #\x alist))))
-  (set! tot (+ tot (cdr (assq #\m alist))))
-  (set! tot (+ tot (cdr (assq #\a alist))))
-  (set! tot (+ tot (cdr (assq #\s alist))))
-  (void))
-
-(define (reject alist)
-  (void))
-
 (define (split-workflow chars)
   (let loop ([chars chars] [name '()])
     (if (null? chars)
