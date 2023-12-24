@@ -128,7 +128,12 @@ I'm giving the idea of using a different language each day a shot.
 19. [Chez Scheme](https://cisco.github.io/ChezScheme/) worked well here.  I've
     implemented a lot of compilers and interpreters in this environment.
     Parsing was perhaps the clumsiest part.
-20. Python
+20. [Python](https://www.python.org/) is easy and natural, and also a language
+    I've used a fair bit.  Nothing not to like.  I saved it for near the end
+    because I knew if I wanted to model something with objects, Python would be
+    the simplest way to do it.  This problem, with lots of hidden state and my
+    idea for using a message bus seemed like a natural fit, and it was.  For
+    part2, the math builtins made my life super easy.
 21. Elixir
 22. [Mathematica](https://www.wolfram.com/mathematica/) is a lot of fun.
     Ad-hoc pattern matching, insanely deep library, on-line help, notebook
