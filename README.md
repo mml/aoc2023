@@ -87,3 +87,6 @@ I'm giving the idea of using a different language each day a shot.
 22. [Mathematica](https://www.wolfram.com/mathematica/) is a lot of fun.
     Ad-hoc pattern matching, insanely deep library, on-line help, notebook
     interaction.
+23. xxx
+24. xxx
+25. Racket
