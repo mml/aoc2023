@@ -79,9 +79,9 @@
 
 (define (binheap-insert! h e k)
   (let ([i (binheap-end h)])
-  (vector-set! h i (make-ent e k))
-  (binheap-set-end! h (add1 i))
-  (binheap-swim-up! h i)))
+    (vector-set! h i (make-ent e k))
+    (binheap-set-end! h (add1 i))
+    (binheap-swim-up! h i)))
 
 (define (binheap-swim-up! h i)
   (let ([j (binheap-parent i)])
