@@ -81,9 +81,27 @@ I'm giving the idea of using a different language each day a shot.
 13. [R](https://www.r-project.org/) worked really well for another problem
     where "transpose the data" or "treat columns like rows" was going to be
     part of the story.
-14. Rust
-15. C++
-16. Swift
+14. [Rust](https://www.rust-lang.org/) is complicated.  It brings many fancy
+    new ideas and a type system that is unusually strict for a language which
+    appears to be fairly low-level and efficient.  I see it as playing in the
+    same waters as Go, but I fight with it a lot more, and it seems to have far
+    more syntax and features to master.  I stayed very much on the surface
+    here, and pretty much regretted my choice the whole time.  I don't think
+    that's really fair to Rust, but I just found it so damn hard to get moving
+    and stay moving.  The language looks on the surface like the usual
+    imperative curly-brace language, but it's not.  And then again it's not
+    Haskell and it's not an ML dialect.  This neither-fish-nor-fowl feeling
+    really made this language a challenge for a situation where I theoretically
+    only have a day.
+15. [C++](https://en.wikipedia.org/wiki/C%2B%2B) was handy here, but I think
+    it's only because day 15 was so easy..  The STL was not too hard to use,
+    and I only had to dip my toe gently in the water.  I got to use C++11's
+    type inference for the first time.  I haven't done anything in C++ since
+    maybe 2005 and had no idea this existed.  It's a nice step toward
+    modernizing the language.
+16. This isn't really what [Swift](https://www.swift.org/) is for.  It's a bit
+    like doing an AoC problem in Objective C.  But anyway, fine language that
+    didn't get in my way much, but kind of a boring choice.
 17. xxx
 18. xxx
 19. [Chez Scheme](https://cisco.github.io/ChezScheme/) worked well here.  I've
