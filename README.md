@@ -102,8 +102,29 @@ I'm giving the idea of using a different language each day a shot.
 16. This isn't really what [Swift](https://www.swift.org/) is for.  It's a bit
     like doing an AoC problem in Objective C.  But anyway, fine language that
     didn't get in my way much, but kind of a boring choice.
-17. xxx
-18. xxx
+17. [Raku](https://raku.org/), much like Rust, was too steep a hill to climb in
+    a single day.  I underestimated that, expecting my Perl 5 facility to be
+    more helpful than it was.  The language has much to offer.  In some ways,
+    it begins to resemble Mathematica(!) because it has such fancy features
+    (like primality testing and cross products) built right in.  It promises
+    neat tricks for parallelism and asynchrony, but my attempts to use them
+    never gave me useful speedups.  For a guy who started with Perl 4, it's
+    definitely not Perl any more.  It's not that glue language that tames your
+    previously-awful shell scripts.  What is it?  And will it ever be
+    predictable enough to become a go-to tool?  Probably not for me.
+18. All I knew about [Dart](https://dart.dev/) was that it was the language
+    behind Flutter, which is tied very tightly to Fuchsia, my last project at
+    Google.  That actually put me off learning more about it.  Felt too much
+    like work.  But I'd read blog posts and seen talks by Bob Nystrom that
+    encouraged me to add it to the list, and I'm glad I did.  I now think of it
+    as a sane cousin of JavaScript.  It could use algebraic data types and
+    better destructuring/pattern-matching in function signatures, but come on.
+    Those are pretty high-level complaints and the fact is it gets many many
+    other things right.  Languages like this often make simple things hard.
+    Stuff like printing to the console or string formatting.  But the DWIM
+    string interpolation and the simple `print()` invocation really surprised
+    me.  This language is easy to get off the ground in, even with tiny, toy
+    AoC projects.
 19. [Chez Scheme](https://cisco.github.io/ChezScheme/) worked well here.  I've
     implemented a lot of compilers and interpreters in this environment.
     Parsing was perhaps the clumsiest part.
