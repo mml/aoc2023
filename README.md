@@ -133,6 +133,13 @@ I'm giving the idea of using a different language each day a shot.
 22. [Mathematica](https://www.wolfram.com/mathematica/) is a lot of fun.
     Ad-hoc pattern matching, insanely deep library, on-line help, notebook
     interaction.
-23. xxx
+23. [Perl 5](https://www.perl.org/), as I mentioned in the Raku entry, is a
+    language I have a lot of experience with, but that experience stopped being
+    updated around 5.10 (2010).  I discovered a few newer facilities late in
+    the game that really could have helped, including signatures (formal
+    parameters!) and built-in class support (finally added 2023!).  Without
+    the class support, doing OO in Perl is just too much overhead IMO.  I just
+    relied on global variables for things like the adjacency list.  So instead
+    of "a graph", there's just "the graph".
 24. xxx
 25. Racket
