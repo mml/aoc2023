@@ -147,4 +147,17 @@ I'm giving the idea of using a different language each day a shot.
     relied on global variables for things like the adjacency list.  So instead
     of "a graph", there's just "the graph".
 24. xxx
-25. Racket
+25. [Racket](https://racket-lang.org/) might seem like cheating.  After all,
+    it's Scheme, just like Day 19's Chez Scheme, right?  And worse, Racket's
+    compiler *is now* Chez Scheme.  But Racket is its own thing.  It's the
+    "language-oriented" programming language, right?  And it has a huge
+    [package ecosystem](https://pkgs.racket-lang.org/).  And indeed, I relied
+    upon the existing graph library, but mostly so I didn't have to reimplement
+    yet another graph representation, which gets tiresome.  I implemented a
+    binary heap in Racket, because I couldn't remember ever doing that before,
+    and it was easy.
+
+    If I missed out on a cool feature of the language, it was
+    [for/fold](https://docs.racket-lang.org/reference/for.html) and friends.
+
+    But mostly, yes:  I cheated in order to use my favorite language twice.
