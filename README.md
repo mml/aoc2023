@@ -52,7 +52,7 @@ I'm giving the idea of using a different language each day a shot.
    global variables and would also be easy in BASIC.  Even the Euclidean
    algorithm stuff.
 9. [Kotlin](https://kotlinlang.org/) is certainly less tedious than Java.  But
-   unlike Scala, if you understand Java semantics (sadly, I do -- even though
+   unlike Scala, if you understand Java semantics (sadly, I do—even though
    that experience is years old), it's pretty easy to get rolling.  I didn't
    need any of its nice lambda syntax or lazy/streaming pipeline stuff for this
    one.  It's just your basic recursive stream differentation!
